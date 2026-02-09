@@ -1,4 +1,11 @@
-
+<?php 
+  session_start();
+  require("config/db.php");
+  if(!isset($_SESSION["user_id"])) {
+    header("Location: auth/login.php");
+    exit();
+  }
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -19,8 +26,9 @@
         </button>
         <div class="collapse navbar-collapse" id="nav">
           <ul class="navbar-nav ms-auto">
-            <li class="nav-item"><a href="auth/register.php" class="nav-link">Register</a></li>
-            <li class="nav-item"><a href="cart.php" class="navlink">Cart</a></li>
+            <li class="nav-item"><a href="products.php" class="nav-link">Products</a></li>
+            <li class="nav-item"><a href="cart.php" class="nav-link">Cart</a></li>
+            <li class="nav-item"><a href="index.php#" class="nav-link">Settings</a></li>
           </ul>
         </div>
       </div>
@@ -28,7 +36,7 @@
     <!-- Hero -->
     <section class="bg-light py-5 text-center">
       <div class="container">
-        <h1 class="fw-bold">Welcome to GrabBoss</h1>
+        <h1 class="fw-bold">Welcome to GrabBoss <?php echo htmlspecialchars($_SESSION["user_name"]); ?> </h1>
         <p class="text-muted">Your one-stop online shopping platform</p>
         <a href="products.php" class="btn btn-primary">Shop Now</a>
       </div>
@@ -50,7 +58,16 @@
         </div>
       </div>
     </section>
-    <script src=""></script>
+
+    <section>
+      <div> 
+
+      </div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" 
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" 
+      crossorigin="anonymous"></script>
   </body>
 </html>
 

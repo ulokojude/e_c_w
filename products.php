@@ -25,6 +25,7 @@
           <ul class="navbar-nav ms-auto">
             <li class="nav-item"><a href="products.php" class="nav-link text-light">Products</a></li>
             <li class="nav-item"><a href="cart.php" class="nav-link">Cart</a></li>
+            <li class="nav-item"><a href="index.php" class="nav-link">Profile</a></li>
   
           </ul>
         </div>

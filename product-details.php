@@ -1,3 +1,12 @@
+<?php 
+  session_start();
+  require("config/db.php");
+  if(!isset($_SESSION["user_id"])) {
+    header("Location: auth/login.php");
+    exit();
+  }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -20,6 +29,7 @@
           <ul class="navbar-nav ms-auto">
             <li class="nav-item"><a href="products.php" class="nav-link text-light">Products</a></li>
             <li class="nav-item"><a href="cart.php" class="nav-link">Cart</a></li>
+            <li class="nav-item"><a href="index.php" class="nav-link">Profile</a></li>
           </ul>
         </div>
       </div>
