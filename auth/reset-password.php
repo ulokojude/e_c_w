@@ -52,7 +52,9 @@
     <div class="container vh-100 d-flex align-items-center justify-content-center">
       <div class="card p-4 shadow w-100" style="max-width: 400px;">
         <h4 class="text-center mb-3">Reset Password</h4>
-        <div class="alert <? echo $mess; ?>"><? echo $message ?></div>
+        <div class="alert <?php echo $mess; ?>">
+          <?php echo $message ?>
+        </div>
         <form action="" method="post">
           <div class="mb-3">
             <label for="" class="form-label">New password</label>

@@ -38,7 +38,7 @@
           $mess = "alert-danger";
         }
 
-        
+
       }
     }
   }
@@ -69,7 +69,7 @@
           </div>
           <div class="mb-3">
             <label for="" class="form-label">Email</label>
-            <input type="email" class="form-control" placeholder="example@gmail.com" name="email" required>
+            <input type="email" class="form-control" placeholder="example@host.com" name="email" required>
           </div>
           <div class="mb-3">
             <label for="" class="form-label">Password</label>
