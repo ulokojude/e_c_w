@@ -2,6 +2,7 @@
   session_start();
   include("../config/db.php");
   $message = "";
+  $mess = "";
 
   if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = trim($_POST["email"]);
@@ -9,6 +10,7 @@
 
     if (empty($email) || empty($password)) {
       $message = "All fields are required";
+      $mess = "alert-danger";
     } else {
       $query = "SELECT * FROM users WHERE email='$email' LIMIT 1";
       $result = mysqli_query($conn, $query);
@@ -22,9 +24,11 @@
           exit();
         } else {
           $message = "Invalid email or password";
+          $mess = "alert-danger";
         }
       } else {
         $message = "Invalid email or password";
+        $mess = "alert-danger";
       }
     }
   }
@@ -43,8 +47,9 @@
   <body class="bg-light">
     <div class="container vh-100 d-flex align-items-center justify-content-center">
       <div class="card p-4 shadow w-100" style="max-width: 400px;">
-      <h4 class="text-center mb-3">GrabBoss</h4>  
-      <form action="" method="post">
+        <h4 class="text-center mb-3">GrabBoss</h4>  
+        <form action="" method="post">
+          <div class="alert <?php echo $mess; ?>"><?php echo $message ?></div>
           <div class="mb-3">
             <label for="" class="form-label">Email</label>
             <input type="email" placeholder="jude@email.com" name="email" class="form-control" required>

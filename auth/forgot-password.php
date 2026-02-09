@@ -21,6 +21,7 @@
         exit();
       } else {
         $message = "Email not found";
+        $mess = "danger";
       }
     }
   }
@@ -32,19 +33,20 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/bootstrap-5.3.8-dist/css/bootstrap.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" 
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" 
+      crossorigin="anonymous">
     <title>Forgot Password | GrabBoss</title>
   </head>
   <body class="bg-light">
     <div class="container vh-100 d-flex align-items-center justify-content-center">
-      
       <div class="card p-4 shadow w-100" style="max-width: 400px;">
         <h4 class="text-center mb-4">GrabBoss</h4>
-        <div class="alert alert-danger"><?php echo $message; ?></div>
+        <div class="alert alert-<? echo $mess; ?>"><?php echo $message; ?></div>
         <form action="" method="post">
           <div class="mb-3">
             <label for="" class="form-label">Registered Email</label>
-            <input type="text" class="form-control" placeholder="jude@grmail.com" required>
+            <input type="text" name="email" class="form-control" placeholder="jude@grmail.com" required>
           </div>
           <div class="mb-3">
             <button class="btn btn-warning w-100">Verify Email</button>
