@@ -1,77 +1,95 @@
 <?php 
+  session_start();
   include("includes/header.php");
   include("data/products.php");
+  require("config/db.php");
+  if(!isset($_SESSION["user_id"])) {
+    header("Location: auth/login.php");
+    exit();
+  }
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" 
-      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" 
-      crossorigin="anonymous">
-    <link rel="stylesheet" href="/styles/products.css">
-    <title>Products | GrabBoss</title>
+    <title>Grabboss | Catalog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles/general.css">
+    <link rel="stylesheet" href="styles/grabboss-header.css">
+    <link rel="stylesheet" href="styles/grabboss.css">
+    <!-- <link rel="stylesheet" href="/styles/trans.css"> -->
   </head>
   <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <div class="container">
-        <a class="navbar-brand" href="index.html">GrabBoss</a>
-        <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#nav">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="nav">
-          <ul class="navbar-nav ms-auto">
-            <li class="nav-item"><a href="products.php" class="nav-link text-light">Products</a></li>
-            <li class="nav-item"><a href="cart.php" class="nav-link">Cart</a></li>
-            <li class="nav-item"><a href="index.php" class="nav-link">Profile</a></li>
-  
-          </ul>
-        </div>
-
+    <div class="amazon-header">
+      <div class="amazon-header-left-section">
+        <a href="amazon.html" class="header-link">
+          <h4>GrabBoss</h4>
+        </a>
       </div>
-    </nav>
-
-    <!-- Pages Header -->
-    <section class="container py-5">
-      <div class="row g-4 product-grid">
-        <!-- Product Card -->
+      <div class="amazon-header-middle-section">
+        <input class="search-bar" type="text" placeholder="Search">
+        <button class="search-button">
+          <img class="search-icon" src="images/icons/search-icon.png">
+        </button>
+      </div>
+      <div class="amazon-header-right-section">
+        <a class="orders-link header-link" href="orders.html">
+          <span class="returns-text">Returns</span>
+          <span class="orders-text">& Orders</span>
+        </a>
+        <a class="cart-link header-link" href="checkout.html">
+          <img class="cart-icon" src="images/icons/cart-icon.png">
+          <div class="cart-quantity js-cart-quantity">0</div>
+          <div class="cart-text">Cart</div>
+        </a>
+      </div>
+    </div>
+    <div class="main">
+      <div class="products-grid js-products-grid">
+        <!-- catalogues goes here.. -->
         <?php foreach($products as $product): ?>
-          <div class="col-sm-6 col-md-4 col-lg-3">
-            <div class="product-container">
-              <div class="product-image-container">
-                <img class="product-image" src="<?php echo $product['image']; ?>">
-              </div> 
-              <div class="product-name limit-text-to-2-lines">
-                <?php echo $product['name']; ?>
-              </div>
-              <div class="product-rating-container">
-                <img class="product-rating-stars"
-                  src="images/ratings/rating-<?php echo $product['rating']['stars'] * 10; ?>.png">
-                <div class="product-rating-count link-primary">
-                    <?php echo $product['rating']['count']; ?>
-                </div>
-              </div>
-              <div class="product-price">
-                $<?php echo number_format($product['priceCents'] / 100, 2); ?>
-              </div>
-              <div class="product-spacer"></div>
-              <div class="added-to-cart">
-                <img src="images/icons/checkmark.png">
-                Added
-              </div>
-              <button 
-                class="add-to-cart-button button-primary js-add-to-cart-button"
-                data-product-id="<?php echo $product['id']; ?>">
-                Add to Cart
-              </button>
+          <div class="product-container">
+            <div class="product-image-container">
+              <img class="product-image"
+                src="<?php echo $product['image']; ?>">
+            </div> 
+            <div class="product-name limit-text-to-2-lines">
+              <?php echo $product['name']; ?>
             </div>
+            <div class="product-rating-container">
+              <img class="product-rating-stars"
+                src="images/ratings/rating-<?php echo $product['rating']['stars'] * 10; ?>.png">
+              <div class="product-rating-count link-primary">
+                <?php echo $product['rating']['count']; ?>
+              </div>
+            </div>
+            <div class="product-price">
+              $<?php echo number_format($product['priceCents'] / 100, 2); ?>
+            </div>
+            <label>
+              <a href="product-details.php">View details</a>
+            </label>
+            <div class="product-spacer"></div>
+            <div class="added-to-cart">
+              <img src="images/icons/checkmark.png">
+              Added
+            </div>
+            <button 
+              class="add-to-cart-button button-primary js-add-to-cart-button"
+              data-product-id="<?php echo $product['id']; ?>">
+              Add to Cart
+            </button>
           </div>
         <?php endforeach; ?>
-
       </div>
-    </section>
+    </div>
+    <script type="module" src="/scripts/amazon.js"></script>
   </body>
 </html>
+
+
+
+
